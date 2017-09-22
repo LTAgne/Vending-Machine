@@ -28,26 +28,48 @@ public class Menu {
 	public BigDecimal getDecimalFromUser(String message) {
 		BigDecimal inputtedDecimal = null;
 		out.println(message);
+		out.flush();
 		do {
 			try {
 				String userInput = in.nextLine();
 				inputtedDecimal = new BigDecimal(userInput);
+				if ( 
+					( inputtedDecimal.compareTo( new BigDecimal ("1") ) == 0 ) || 
+					( inputtedDecimal.compareTo( new BigDecimal ("5") ) == 0 ) || 
+					( inputtedDecimal.compareTo( new BigDecimal ("10") ) == 0 ) || 
+					( inputtedDecimal.compareTo( new BigDecimal ("20") ) == 0 )
+					) {
+					return inputtedDecimal;
+				}  
+				
 			} catch(NumberFormatException ex) {
 				out.print("Please input a valid number >>> ");
 				out.flush();
 			}
 		} while (inputtedDecimal == null);
-		
-		return inputtedDecimal;
+		System.out.print("Sorry that bill is not accepted");
+		return new BigDecimal("0.00");
 	}
 
-	private Object getChoiceFromUserInput(Object[] options) {
+	public Object getChoiceFromUserInput(Object[] options) {
 		Object choice = null;
 		String userInput = in.nextLine();
+//		Object [] options = new Object[19];
+//		for (int i=0; i<19; i++){
+//			if (i<=3) {
+//				options[i] = "A"+i;
+//			} if (i<=7){
+//				options[i] = "B"+i;
+//			}if (i<=11){
+//				options[i] = "C"+i;
+//			}if (i<=19){
+//				options[i] = "D"+i;
+//			}
+		
 		try {
 			int selectedOption = Integer.valueOf(userInput);
 			if(selectedOption > 0 && selectedOption <= options.length) {
-				choice = options[selectedOption - 1];
+				choice = (String) options[selectedOption - 1];
 			}
 		} catch(NumberFormatException e) {
 			// eat the exception, an error message will be displayed below since choice will be null
@@ -67,4 +89,9 @@ public class Menu {
 		out.print("\nPlease choose an option >>> ");
 		out.flush();
 	}
+
+//	public String getChoiceFromUserInput() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }

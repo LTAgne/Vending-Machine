@@ -8,7 +8,7 @@ public class Chips extends Product {
 		super(nameOfProduct, price);
 	}
 	
-	protected String getSound() {	
+	public String getSound() {	
 		return "Crunch, crunch! Yum!";
 	}
 
