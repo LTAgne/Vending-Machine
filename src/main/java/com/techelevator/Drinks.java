@@ -9,7 +9,7 @@ public class Drinks extends Product {
 	}
 	
 	protected String getSound() {	
-		return "Glug, glug! Yum!";
+		return "Glug Glug, Yum!";
 	}
 
 }

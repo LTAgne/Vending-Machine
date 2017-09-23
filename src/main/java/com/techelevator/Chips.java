@@ -9,7 +9,7 @@ public class Chips extends Product {
 	}
 	
 	public String getSound() {	
-		return "Crunch, crunch! Yum!";
+		return "Crunch Crunch, Yum!";
 	}
 
 }
