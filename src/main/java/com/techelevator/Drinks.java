@@ -8,7 +8,7 @@ public class Drinks extends Product {
 		super(nameOfProduct, price);
 	}
 	
-	protected String getSound() {	
+	public String getSound() {	
 		return "Glug Glug, Yum!";
 	}
 

@@ -8,7 +8,7 @@ public class Candy extends Product {
 		super(nameOfProduct, price);
 	}
 	
-	protected String getSound() {	
+	public String getSound() {	
 		return "Munch Munch, Yum!";
 	}
 

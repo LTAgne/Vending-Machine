@@ -60,9 +60,9 @@ public class Menu {
 			if(selectedOption > 0 && selectedOption <= options.length) {
 				choice = (String) options[selectedOption - 1];
 			}
-		} catch(NumberFormatException e) {
-			// eat the exception, an error message will be displayed below since choice will be null
+		} catch(NumberFormatException e) {			
 		}
+		
 		if(choice == null) {
 			out.println("\n*** "+userInput+" is not a valid option ***\n");
 		}

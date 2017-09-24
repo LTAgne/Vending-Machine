@@ -52,13 +52,17 @@ public class VendingMachineCLI {
 				
 				if(choice2.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
 					 
-					  balance = balance.add(menu.getDecimalFromUser("How much money would you like to insert? (e.g. $1, $5, $10) >>>"));	
+					  balance = balance.add(menu.getDecimalFromUser("How much money would you like to insert? (e.g. $1, $5, $10, $20) >>>"));	
 					  LogWriter.writeLog("FEED MONEY:", null, startingBalance, balance);
 					} else if (choice2.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
-						Scanner input = new Scanner(System.in);
-						System.out.print("Enter Product Key to purchase >>>");
-						String userSelection = input.nextLine(); 
-						balance = vm.makePurchase(userSelection, balance);
+						try { 
+							Scanner input = new Scanner(System.in);
+							System.out.print("Enter Product Key to purchase >>>");
+							String userSelection = input.nextLine(); 
+							balance = vm.makePurchase(userSelection, balance);
+						}catch (NullPointerException ex){
+							System.out.print("Sorry that is not a valid Option");
+						}
 					} else if (choice2.equals(PURCHASE_MENU_FINISHED)) {
 						System.out.println(vm.getChange(balance));
 						balance = new BigDecimal("0.00");
@@ -79,15 +83,6 @@ public class VendingMachineCLI {
 		cli.run();
 	}
 	
-	public BigDecimal feedMoney() {
-		BigDecimal balance = new BigDecimal("0.00");
-		Scanner userInput = new Scanner(System.in);
-		System.out.println("How much money would you like to insert? >>>");
-		BigDecimal inputMoney = userInput.nextBigDecimal();
-		balance = balance.add(inputMoney);
-		System.out.println(balance);
-		return balance;
-	}
 
 	public BigDecimal getBalance() {
 		return balance;

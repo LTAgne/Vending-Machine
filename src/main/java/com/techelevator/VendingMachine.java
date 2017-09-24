@@ -29,7 +29,7 @@ public class VendingMachine {
 	}
 
 	private Map<String, List<Product>> buildInventory() {
-		File stockFile = new File("/Users/laurenagne/workspace/team0-java-module1-capstone/vendingmachine.csv");
+		File stockFile = new File("/Users/JaredMalvic/workspace/team0-java-module1-capstone/vendingmachine.csv");
 		
 		try (Scanner input = new Scanner(stockFile)) {
 			while(input.hasNextLine()) {
@@ -110,7 +110,7 @@ public class VendingMachine {
 			 return balance;
 		
 		}else if (inventory.size() == 0 ){        
-			 System.out.println("Item is Sold Out");
+			 balance = startingBalance; 
 			 return balance;
 		
 		}else if (inventory.size() >1){ 
@@ -125,6 +125,7 @@ public class VendingMachine {
 		} catch (IndexOutOfBoundsException ex) {
 			
 			System.out.print("Sorry that Item is Sold Out");
+			balance = startingBalance; 
 			return balance;
 			
 		}

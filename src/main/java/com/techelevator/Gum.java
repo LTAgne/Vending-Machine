@@ -8,7 +8,7 @@ public class Gum extends Product {
 		super(nameOfProduct, price);
 	}
 	
-	protected String getSound() {	
+	public String getSound() {	
 		return "Chew Chew, Yum!";
 	}
 
