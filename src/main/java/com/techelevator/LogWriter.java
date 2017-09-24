@@ -7,26 +7,24 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class LogWriter {
 
-	public void writeLog (String category, BigDecimal amount, BigDecimal balance) {
+	public static void writeLog (String category, BigDecimal amount, BigDecimal startingBalance, BigDecimal endingBalance) {
 		
-		LocalTime time = LocalTime.now();
-		LocalDate date = LocalDate.now();
-		
-		try (PrintWriter log = new PrintWriter(new FileOutputStream(new File("./log.txt"),true))){
+		String time = LocalTime.now().format(DateTimeFormatter.ofPattern("h:mm a"));
+		String date = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/d/uuuu"));
 			
-		String printDate = date.toString();
-		String printTime = time.toString();
-		String printCategory = category.toString();
-		String printBalance = balance.toString();
+		try (PrintWriter log = new PrintWriter(new FileOutputStream(new File("./log.txt"),true))){
+				
+		String printSBalance = startingBalance.toString();
+		String printEBalance = endingBalance.toString();
+			
+		log.println(date + " " + time + " " + category + " $" + printSBalance + " $" + printEBalance);
 		
-		log.println(printDate + " " + printTime + " " + String.format("%-25s", printCategory) + String.format("%10-s", "$" + printBalance));
 		} catch(FileNotFoundException e){
 			e.getMessage();
 		}
-		
 	}
-	
 }

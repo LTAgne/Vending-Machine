@@ -53,14 +53,13 @@ public class VendingMachineCLI {
 				if(choice2.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
 					 
 					  balance = balance.add(menu.getDecimalFromUser("How much money would you like to insert? (e.g. $1, $5, $10) >>>"));	
-					  vm.writeLog("FEED MONEY:", null, startingBalance, balance);
+					  LogWriter.writeLog("FEED MONEY:", null, startingBalance, balance);
 					} else if (choice2.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
 						Scanner input = new Scanner(System.in);
 						System.out.print("Enter Product Key to purchase >>>");
 						String userSelection = input.nextLine(); 
 						balance = vm.makePurchase(userSelection, balance);
 					} else if (choice2.equals(PURCHASE_MENU_FINISHED)) {
-						//vm.getChange(balance);
 						System.out.println(vm.getChange(balance));
 						balance = new BigDecimal("0.00");
 						vm.getPurchases();
@@ -94,6 +93,4 @@ public class VendingMachineCLI {
 		return balance;
 	}
 	
-}
-
-	
+}	

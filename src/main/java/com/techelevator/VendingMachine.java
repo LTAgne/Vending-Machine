@@ -71,13 +71,11 @@ public class VendingMachine {
 		return inventory;
 	}
 
-	
-	
+		
 	public Map<String, List<Product>> getInventory() {
 		return inventory;
 	}
 
-	
 	
 	public void displayInventory() {
 		for(Map.Entry<String, List<Product>> entry : inventory.entrySet()) {
@@ -99,13 +97,12 @@ public class VendingMachine {
 		} productPurchased.removeAll(productPurchased);
 	}
 	
-	
-	
+		
 	public BigDecimal makePurchase(String userSelection, BigDecimal balance) {
 		
 		BigDecimal startingBalance = balance;
-		
 		BigDecimal costOfItem = priceList.get(userSelection.toUpperCase());
+		
 		try { 
 		if (balance.compareTo(costOfItem) == -1 ){
 			 System.out.println("");
@@ -119,7 +116,7 @@ public class VendingMachine {
 		}else if (inventory.size() >1){ 
 			balance = balance.subtract(costOfItem);
 			productPurchased.add(inventory.get(userSelection.toUpperCase()).remove(0));
-			writeLog((productList.get(userSelection.toUpperCase()) + " " + userSelection.toUpperCase()), costOfItem, startingBalance, balance);	
+			LogWriter.writeLog((productList.get(userSelection.toUpperCase()) + " " + userSelection.toUpperCase()), costOfItem, startingBalance, balance);	
 			return balance;
 		
 		} else {
@@ -132,46 +129,24 @@ public class VendingMachine {
 			
 		}
 	}
-
 	
 	
 	public String getChange(BigDecimal balance) {
 		BigDecimal endingBalance = new BigDecimal ("0.00");
-		
 		List<BigDecimal> change = new ArrayList<>();
+		
 		change.addAll(Arrays.asList(balance.divideAndRemainder(new BigDecimal("0.25"))));
 		change.addAll(Arrays.asList(change.get(1).divideAndRemainder(new BigDecimal("0.10"))));
 		change.remove(1);
 		change.addAll(Arrays.asList(change.get(2).divideAndRemainder(new BigDecimal("0.05"))));
 		change.remove(2);
-		writeLog("GIVE CHANGE", null,balance, endingBalance);
+		
+		LogWriter.writeLog("GIVE CHANGE", null, balance, endingBalance);
+		
 		System.out.println("");
 		System.out.println("*****************************");
 		return "Here's your change! (You received " + change.get(0)+ " Quarter(s), " + change.get(1) + " Dime(s), and "+ change.get(2) + " Nickel(s)"; 
 		 
 	}			
-
 	
-	
-	public void writeLog (String category, BigDecimal amount, BigDecimal startingBalance, BigDecimal endingBalance) {
-			
-		String time = LocalTime.now().format(DateTimeFormatter.ofPattern("h:mm a"));
-		String date = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/d/uuuu"));
-			
-		try (PrintWriter log = new PrintWriter(new FileOutputStream(new File("./log.txt"),true))){
-				
-		String printSBalance = startingBalance.toString();
-		String printEBalance = endingBalance.toString();
-			
-		log.println(date + " " + time + " " + category + " $" + printSBalance + " $" + printEBalance);
-		
-		} catch(FileNotFoundException e){
-			e.getMessage();
-		}
-			
-	}
-		
-	
-}	
-
-
+}

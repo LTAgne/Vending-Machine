@@ -54,18 +54,7 @@ public class Menu {
 	public Object getChoiceFromUserInput(Object[] options) {
 		Object choice = null;
 		String userInput = in.nextLine();
-//		Object [] options = new Object[19];
-//		for (int i=0; i<19; i++){
-//			if (i<=3) {
-//				options[i] = "A"+i;
-//			} if (i<=7){
-//				options[i] = "B"+i;
-//			}if (i<=11){
-//				options[i] = "C"+i;
-//			}if (i<=19){
-//				options[i] = "D"+i;
-//			}
-		
+	
 		try {
 			int selectedOption = Integer.valueOf(userInput);
 			if(selectedOption > 0 && selectedOption <= options.length) {
@@ -90,8 +79,4 @@ public class Menu {
 		out.flush();
 	}
 
-//	public String getChoiceFromUserInput() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 }
